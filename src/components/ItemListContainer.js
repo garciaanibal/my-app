@@ -16,7 +16,7 @@ function ItemListContainer({greeting}) {
             <li className="fs-3 mx-5">ÍTEM 4</li>
             <br></br>
             <ItemCount stock="5" initial={0} onAdd={onAdd} />
-            <Button onClick={onAdd} variant="outline-secondary" size="lg">Aletra{onAdd} </Button>
+            
                
 
     </div>
