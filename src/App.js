@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
@@ -10,7 +10,7 @@ function App() {
     <>
     <NavBar/>
     <ItemListContainer greeting='CATALOGO DE PRODUCTOS'/> 
-    {/* <ItemCount stock="3" initial="1" onAdd={onAdd}/>   */}
+   
        
 
     </>
