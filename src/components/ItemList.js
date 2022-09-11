@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import Item from './Item'
+import products from "./productData";
 
 const ItemList = () => {
-    const [chars, setChars] = useState([])
-
-    useEffect(() => {
-        const URL='https://rickandmortyapi.com/api/character'
-        setTimeout( ()=>{
-          fetch(URL)
-          .then( res => res.json() )
-          .then( data => {
-            console.log(data.results)
-            setChars(data.results)
-          })
-        },2000)        
-      
-        return () => {
-          
-        }
-      }, [])
+  const [items, setItems]= useState([]);
+  
+  useEffect(()=>{
+  
+   setItems(products)
+   
+ },[])
     
   return (
     <>
-        <div>
-            { chars.map(c=><Item key={c.id} id={c.id} {...c} />) }
+        {/* <div>
+            { chars.map(c => <Item key={c.id} id={c.name} />) }
+        </div> */}
+         <div>
+            { items.map(i => <Item key={i.id} nombre={i.name} {...i} />  
+            
+             ) }
         </div>
        
     </>
