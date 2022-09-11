@@ -1,12 +1,11 @@
 import ItemCount from './ItemCount';
 import ItemList from './ItemList';
-import { useEffect, useState } from "react";
+
 function ItemListContainer({greeting}) {
  
   function onAdd({onAdd}){
     alert(onAdd)    
   }
- 
 
   return (
     <div> 

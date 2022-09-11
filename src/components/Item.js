@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/esm/Button'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
-const Item = ({name,price,URLimage,description}) => {
+const Item = ({name,URLimage}) => {
   return (
     <>
     <Container>
@@ -20,7 +21,7 @@ const Item = ({name,price,URLimage,description}) => {
           <Row className="justify-content-md-center">
               <Col xs lg="3">
                 
-                <Button variant="secondary" size="sm">Ver detalle</Button>
+                <Link to={'/item/1'}><Button variant="secondary" size="sm">Ver detalle</Button></Link>
               
                 </Col>
           </Row>
