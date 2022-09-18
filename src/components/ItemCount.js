@@ -19,7 +19,7 @@ function ItemCount({ stock, initial, onAdd }) {
     
     return(
       <>
-        <div className="container">
+        <div>
           <Button onClick={handleClick} variant="outline-primary">Add</Button>{' '}
           <Button onClick={onAdd} variant="outline-secondary" size="lg"> Contador: {counter} </Button>
           <Button onClick={handleClick2} variant="outline-danger">Remove</Button>{' '}

@@ -8,20 +8,23 @@ function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
         <Container> 
-        <Navbar.Brand><Link to={'/'}>Inicio</Link></Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                      <Nav.Link href="#link">Ofertas</Nav.Link>
-                      <Nav.Link href="#link">Contacto</Nav.Link>
-                      <Nav.Link href="#link">Fomas de pagos</Nav.Link>
-                      <Nav.Link href="#link">Productos</Nav.Link>
-                </Nav>
-                
-            </Navbar.Collapse>
+          <Link to={'/'}>
+            <Navbar.Brand>Inicio</Navbar.Brand>
+          </Link>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                          <Nav.Link href="#link">Ofertas</Nav.Link>
+                          <Nav.Link href="#link">Contacto</Nav.Link>
+                          <Nav.Link href="#link">Fomas de pagos</Nav.Link>
+                          <Nav.Link href="#link">Productos</Nav.Link>
+                    </Nav>
+              </Navbar.Collapse>
                <Navbar.Collapse ></Navbar.Collapse>
                 <Navbar.Collapse >
-                  <Nav.Link href="#link"> <CartWidget/> </Nav.Link>
+                  <Nav.Link > 
+                    <Link to={'/cart'}><CartWidget/></Link> 
+                  </Nav.Link>
                 </Navbar.Collapse>
          </Container>
      </Navbar>
