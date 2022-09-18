@@ -2,59 +2,60 @@ import React from 'react';
 import { React, createContext, useContext, useState } from "react";
 import Swal from "sweetalert2";
 import uuid from "react-uuid";
+import products from "./productData";
 
-const CartContext = React.createContext()
+const productsContext = React.createContext()
 
-export const useCartContext=()=>useContext(CartContext)
+export const useproductsContext=()=>useContext(productsContext)
 
-const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+const productsContextProvider = ({ children }) => {
+    const [products, setProducts] = useState([]);
   
-    const existe = (cart) => {
-      return cart.some((buscada) => buscada.name === cart.name);
+    const existe = (products) => {
+      return products.some((buscada) => buscada.id === products.id);
     };
   
-    const addItem = (cart) => {
-      if (existe(cart)) {
+    const addItem = (products) => {
+      if (existe(products.id)) {
         return Swal.fire("Ya existe en la lista");
       }
   
       const id = uuid();
-      const nuevacart = { ...cart, id };
-      setCart([...cart, nuevacart]);
-      Swal.fire("Cart agregada");
+      const nuevoproduct = { ...products, id };
+      setProducts([...products, nuevoproduct]);
+      Swal.fire("Products agregada");
     };
   
     //* Otra forma, es como mostro el profe Adrian
   
-    //    const addItem2 = (cart) => {
+    //    const addItem2 = (products) => {
     //     const id = uuid();
-    //     const nuevacart = { ...cart, id };
-    //     setCart((prev) => prev.concat(nuevacart));
+    //     const nuevaproducts = { ...products, id };
+    //     setProducts((prev) => prev.concat(nuevaproducts));
     //   };
   
-    const removeItem = (cart) => {
-      const removeItem = cart.filter((buscada) => buscada.id !== cart.id);
-      return setCart(removeItem);
+    const removeItem = (products) => {
+      const removeItem = products.filter((buscada) => buscada.id !== products.id);
+      return setProducts(removeItem);
     };
   
     const clear = () => {
-      setCart([]);
+      setProducts([]);
     };
   
     const pendientes = () => {
-      const pendientes = cart.reduce(
-        (acum, cart) => (cart.estado === false ? acum + 1 : acum),
+      const pendientes = products.reduce(
+        (acum, products) => (products.estado === false ? acum + 1 : acum),
         0
       );
       return pendientes;
     };
   
-    const actualizarEstado = (cart, estado) => {
-      const copiaCarts = [...cart];
+    const actualizarEstado = (products, estado) => {
+      const copiaproductss = [...products];
   
-      const actualizarCart = copiaCarts.map((actual) => {
-        if (actual.id === cart.id) {
+      const actualizarproducts = copiaproductss.map((actual) => {
+        if (actual.id === products.id) {
           return { ...actual, estado: estado ? false : true };
         } else {
           return actual;
@@ -64,20 +65,20 @@ const CartContextProvider = ({ children }) => {
       //!---------------------------------------------------------
       //! Esto no es necesario en la funcion, sino que lo use
       //! para mostrar como el estado original no habia cambiado
-      const original = cart.find((p) => p.id === cart.id);
+      const original = products.find((p) => p.id === products.id);
   
-      console.log("cart original:", original);
-      console.log("Lista cart original", cart);
-      console.log("Lista cart actualizadas:", actualizarCart);
+      console.log("products original:", original);
+      console.log("Lista products original", products);
+      console.log("Lista products actualizadas:", actualizarproducts);
       //! ---------------------------------------------------------
   
-      setCart(actualizarCart);
+      setProducts(actualizarproducts);
     };
   
     return (
-      <CartContext.Provider
+      <productsContext.Provider
         value={{
-          cart,
+          products,
           existe,
           addItem,
           removeItem,
@@ -87,7 +88,7 @@ const CartContextProvider = ({ children }) => {
         }}
       >
         {children}
-      </CartContext.Provider>
+      </productsContext.Provider>
     );
   };
-  export default CartContextProvider
+  export default productsContextProvider
