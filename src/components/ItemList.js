@@ -13,9 +13,7 @@ const ItemList = () => {
     
   return (
     <>
-        {/* <div>
-            { chars.map(c => <Item key={c.id} id={c.name} />) }
-        </div> */}
+      
          <div>
             { items.map(i => <Item key={i.id} nombre={i.name} {...i} />  
             

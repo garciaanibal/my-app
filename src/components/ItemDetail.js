@@ -21,4 +21,3 @@ const ItemDetail = ( {item:{name,price,URLimage,description}} ) => {
 }
 export default ItemDetail
 
-// alt="" }

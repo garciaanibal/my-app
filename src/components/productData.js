@@ -1,40 +1,85 @@
 const products = [
     {
         id: 1,
-        name: "Mate",
-        price: "5000",
-        description: "Juebo de mate de la mejor calidad",
-        imagen:'./img/mate.avif',
-        URLimage: "https://images.unsplash.com/photo-1656435011745-397504e27449?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+        name: "Paba electrica",
+        price: "$2000",
+        category:"electrodoméstico",
+        description: "Paba electrica calidad 100%",
+        imagen:'',
+        URLimage: "https://images.fravega.com/f500/89e9482e3c0cb5a987245974b808e49a.jpg"
     },
+    
     {
         id: 2,
-        name: "Termo",
-        price: "1200",
-        description: "Termo de la mejor calidad",
-        imagen:"./img/Termo.avif",
-        URLimage: "https://images.unsplash.com/photo-1564287690617-34aff8f85015?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlcm1vfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-
-
+        name: "Horno de pan",
+        price: "$12000",
+        category:"electrodoméstico",
+        description: "Horno de pan calidad 100%",
+        imagen:"",
+        URLimage: "https://www.dualequipamientos.com.ar/wp-content/uploads/2021/02/Horno-de-Pan-Atma-HP4060E-1.jpg"
     },
+
     {
         id: 3,
-        name: "Juego de Jarra y vasos",
-        price: "5200",
-        description: "Juego de Jarra y vasos de vidrio de la mejor calidad",
-        imagen:"./img/Jarra.jpg",
-        URLimage: "https://images.unsplash.com/photo-1520971007605-aafafdbb64ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGphcnJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+        name: "Batidora",
+        price: "$5200",
+        category:"electrodoméstico",
+        description: "Batidora calidad 100%",
+        imagen:"",
+        URLimage: "https://saturnohogar.com.ar/3018-thickbox_default/batidora-electrica-de-mano-yelmo-bm1608.jpg"
 
 
     },
     
     {
         id: 4,
-        name: "Tasa",
-        price: "530",
-        description: "Tasa de porcelana de la mejor calidad",
+        name: "Horno electrico",
+        price: "$20530",
+        category:"electrodoméstico",
+        description: "Horno electrico calidad 100%",
+        imagen:"",
+        URLimage: "https://castillo.com.ar/Image/0/500_500-13144717-1.png"
+    },
+
+    {
+        id: 5,
+        name: "Soldadora",
+        price: "$31300",
+        category:"herramientas",
+        description: "Soldadora calidad 100%",
+        imagen:"",
+        URLimage: "https://cotoofertas.com/wp-content/uploads/2020/06/Soldadora-El%C3%A9ctrica-TOP-HOME-Bx1-100b.jpg"
+    },
+
+    {
+        id: 6,
+        name: "Caladora",
+        price: "$5530",
+        category:"herramientas",
+        description: "Martillo de metal calidad 100%",
+        imagen:"",
+        URLimage: "https://www.dowenpagioweb.com.ar/wp-content/uploads/9993620-1_WEB.jpg"
+    },
+
+    {
+        id: 7,
+        name: "Taladro",
+        price: "$11300",
+        category:"herramientas",
+        description: "Taladro calidad 100%",
+        imagen:"",
+        URLimage: "https://www.ferreteriahidromat.com/ar/wp-content/uploads/2018/07/taladro-dewalt-dwd014.jpg"
+    },
+
+    {
+        id: 8,
+        name: "Moladora",
+        price: "$15300",
+        category:"herramientas",
+        description: "Moladora calidad 100%",
         imagen:"./img/tasa.avif",
-        URLimage: "https://images.unsplash.com/photo-1615174111727-b165bfe654a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
+        URLimage: "https://www.machenaonline.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/2/_/2_15.png"
     }
+
 ]
 export default products

@@ -4,29 +4,34 @@ import Navbar from 'react-bootstrap/Navbar';
 import CartWidget from './CartWidget.js'
 import{ Link } from 'react-router-dom';
 
-function NavBar() {
+function NavBar( ) {
+  
   return (
     <Navbar bg="light" expand="lg">
-        <Container> 
-          <Link to={'/'}>
-            <Navbar.Brand>Inicio</Navbar.Brand>
-          </Link>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                          <Nav.Link href="#link">Ofertas</Nav.Link>
-                          <Nav.Link href="#link">Contacto</Nav.Link>
-                          <Nav.Link href="#link">Fomas de pagos</Nav.Link>
-                          <Nav.Link href="#link">Productos</Nav.Link>
-                    </Nav>
-              </Navbar.Collapse>
-               <Navbar.Collapse ></Navbar.Collapse>
-                <Navbar.Collapse >
-                  <Nav.Link > 
-                    <Link to={'/cart'}><CartWidget/></Link> 
-                  </Nav.Link>
-                </Navbar.Collapse>
-         </Container>
+    <Container> 
+      <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+        <Navbar.Brand>Inicio</Navbar.Brand>
+      </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Link  to={'/category/electrodoméstico'} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                  <Nav.Link href="#link">Electrodomésticos</Nav.Link>
+                </Link>
+                <Link  to={'/category/herramientas'} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                  <Nav.Link href="#link">Herramientas</Nav.Link>
+                </Link> 
+                  <Nav.Link href="#link">Fomas de pagos</Nav.Link>
+                  <Nav.Link href="#link">Ofertas</Nav.Link>
+              </Nav>
+          </Navbar.Collapse>
+          <Navbar.Collapse ></Navbar.Collapse>
+          <Navbar.Collapse >
+            <Nav.Link > 
+              <Link to={'/cart'}><CartWidget/></Link> 
+            </Nav.Link>
+          </Navbar.Collapse>
+      </Container>
      </Navbar>
     
     
