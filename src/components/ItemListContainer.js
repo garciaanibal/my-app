@@ -3,17 +3,25 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import { Link, useParams } from 'react-router-dom'
 import products from "./productData"
+import { collection, getDocs, getFiresore, getFirestore, query, where } from "firebase/firestore"
 
 function ItemListContainer({greeting}) {
  
-  const [items, setItems] = useState([])
-  let { categoryid } = useParams()
+      const [items, setItems] = useState([])
+      let { categoryid } = useParams()
 
-  useEffect(() => {
-    
-    typeof categoryid == 'undefined'? setItems(products) : setItems(products.filter(p=>p.category==categoryid))
+      useEffect(() => {
+        
+        const db = getFirestore();
+        const itemsCollection = collection(db, "products");
+        getDocs(itemsCollection).then((snapshot)=>{
+          // console.log(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() })))
+          const products = snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() }))
 
-  },[categoryid])
+        typeof categoryid === 'undefined'? setItems(products) : setItems(products.filter(p=>p.category==categoryid));
+
+      })
+    },[categoryid])
  
 
   return (
@@ -45,5 +53,6 @@ function ItemListContainer({greeting}) {
     </>
   )
 }
+
 export default ItemListContainer
 

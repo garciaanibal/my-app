@@ -18,11 +18,10 @@ const ItemDetail = ( {item} ) => {
         <li>Precio: {item.price}</li>
         <img src = {item.URLimage} style = { {width:"15rem"} } />
         <li>Descripcion: {item.description}</li>
-        <br></br>
    </div>
    <div>
        { add ?
-          <div> Añadido</div>
+          <div className='meta'> Añadido</div>
           :
           <ItemCount stock={10} initial={0} onAdd={onAdd} />
           // <ItemCount item={item} stock={10} initial={0} addItem={addItem} />
