@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import { Link, useParams } from 'react-router-dom'
-import products from "./productData"
-import { collection, getDocs, getFiresore, getFirestore, query, where } from "firebase/firestore"
+import { collection, getDocs, getFirestore } from "firebase/firestore"
 
 function ItemListContainer({greeting}) {
  
