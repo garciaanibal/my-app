@@ -17,7 +17,7 @@ function ItemListContainer({greeting}) {
            console.log(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() })))
           const products = snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() }))
 
-        typeof categoryid === 'undefined'? setItems(products) : setItems(products.filter(p=>p.category==categoryid));
+        typeof categoryid === 'undefined'? setItems(products) : setItems(products.filter(p=>p.categoryId==categoryid));
 
       })
     },[categoryid])
