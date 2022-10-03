@@ -56,7 +56,7 @@ const products = [
         name: "Caladora",
         price: "$5530",
         category:"herramientas",
-        description: "Martillo de metal calidad 100%",
+        description: "Caladora calidad 100%",
         imagen:"",
         URLimage: "https://www.dowenpagioweb.com.ar/wp-content/uploads/9993620-1_WEB.jpg"
     },

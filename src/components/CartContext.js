@@ -1,39 +1,36 @@
 import { createContext, useContext, useState } from "react";
 import Item from "./Item";
-import products from "./productData";
 
+const CartContext = createContext([]);
 
-const CartContext = createContext();
-
-export const useCartContext=()=>useContext(CartContext);
+export const useCartContext= () => useContext(CartContext);
 
 export const CartContextProvider = ({ children }) => {
-    const [items, setItems] = useState([]);
-  
-    const isInCart = (id) => {
-      const found= items.find(item => item.id === id)
-      return found
+    const [cart, SetCart] = useState([]); //estado del carrito
+    
+    //para saber si un producto esta en el carrito
+    const isInCart = (id) => { 
+      return cart.find(i => i.id === id) ? true : false
     };
   
-    const addItem = (item,counter) => {
-      isInCart(item.id) ? setItems(items.map((products) => {
+    const addItem = (item,newquantity) => {
+      isInCart(item.id) ? SetCart(cart.map((products) => {
         if(products.id === item.id){
-          products.counter+=counter
+          products.counter += newquantity
         }
         return products
       }))
        :
-       setItems([...items, {id: item.id, name: item.name, price: item.price, counter:counter}])
+       SetCart([...cart, {...item,newquantity}])
     };
-  
-    const removeItem = (id) => {
-      setItems(items.filter(item=> item !== id))
-    };
-  
-    const clear = () => {
-      setItems([]);
-    };
-  
+    //remover producto
+    const removeItem = (id) => { SetCart(cart.filter(item => item !== id))}; 
+    
+    //limpiar el carrito
+    const clear = () => { SetCart([]); }; 
+    //Total de productos
+    const totalItems=()=> cart.reduce((acumulador,pruductoActual) => acumulador + pruductoActual.newquantity,0);
+    
     return (
       <CartContext.Provider
         value={{
@@ -41,6 +38,7 @@ export const CartContextProvider = ({ children }) => {
           addItem,
           removeItem,
           clear,
+          cart
        
         }}
       >

@@ -1,45 +1,40 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { CartContext, useContext } from "react";
 
-function ItemCount({ stock, initial, onAdd }) {
+function ItemCount({ stock, inicio , onAdd }) {
     
-  const[counter, setCounter] = useState(initial);
+  const[count, setCount] = useState(parseInt(inicio));
   // const { item, addItem} = useContext(CartContext);  
   
   const sumarClick = () => {
-     if(counter < stock){
-        setCounter(counter + 1);
+    
+    if(count < stock){
+        setCount(count + 1);
       } 
     }
   
-  const restarClick2 = () => {
-     if(counter > 0){
-       setCounter(counter - 1);
+  const restarClick = () => {
+     if(count > 0){
+       setCount(count - 1);
      }
     }
-    
+    useEffect(() =>{
+      setCount(parseInt(inicio))
+    }, [])
+
     return(
       <>
         <div>
-          <Button onClick={sumarClick} variant="outline-primary" btn-lg> + </Button>{' '}
-          <Button onClick={onAdd} variant="outline-secondary" btn-lg> {counter} </Button>{' '}
-          <Button onClick={restarClick2} variant="outline-danger" btn-lg> - </Button>
+          <Button disabled={count <= 1} onClick={restarClick} variant="outline-primary" btn-lg> - </Button>{' '}
+          <Button onClick={onAdd} variant="outline-secondary" > {count} </Button>{' '}
+          <Button disabled={count >= stock} onClick={sumarClick} variant="outline-primary" btn-lg> + </Button>
+          <div> 
+            <Button disabled={stock <= 0}  onClick={ () =>onAdd(count)} >Añadir al Carrito </Button>
+            <br></br>
+          </div>
         </div>
-        {
-          counter > 0 ? 
-          // <div className='ui botton attached button' onClick={ () =>addItem(item, counter)} >
-          <div className='ui botton attached button' onClick={onAdd} >
-            <i className='cart icon'></i>
-              Añadir al Carrito
-          </div>
-          :
-          <div className='ui botton attached disable' >
-              <i className='cart icon'></i>
-                Añadir al Carrito
-          </div>
-
-        }
+       
      </>
 
     ) 
