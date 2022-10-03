@@ -1,12 +1,8 @@
-import { CartContext, useContext } from "react";
+import { useCartContext} from "./CartContext";
 
 const CartWidget = () => {
-  // const{items}= useContext(CartContext)
-  // let itemsInCart=0;
+  const{totalItems}= useCartContext()
 
-  // items.map((item)=>{
-  //   itemsInCart = itemsInCart + item.cant;
-  // })
   
   return (
     <>
@@ -15,6 +11,7 @@ const CartWidget = () => {
         width="40"
         height="30"        
     />
+    <span>{totalItems() || ''}</span>
     </>
    
   )

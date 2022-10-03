@@ -38,6 +38,7 @@ export const CartContextProvider = ({ children }) => {
           addItem,
           removeItem,
           clear,
+          totalItems,
           cart
        
         }}

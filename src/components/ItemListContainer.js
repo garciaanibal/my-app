@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import { Link, useParams } from 'react-router-dom'
-import { collection, getDocs, getFirestore } from "firebase/firestore"
+import { collection, getDocs, getFirestore,query,where} from "firebase/firestore"
 
 function ItemListContainer({greeting}) {
  
@@ -13,13 +13,16 @@ function ItemListContainer({greeting}) {
         
         const db = getFirestore();
         const itemsCollection = collection(db, "products");
-        getDocs(itemsCollection).then((snapshot)=>{
-           console.log(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() })))
-          const products = snapshot.docs.map((doc)=>({id: doc.id, ...doc.data() }))
-
-        typeof categoryid === 'undefined'? setItems(products) : setItems(products.filter(p=>p.categoryId==categoryid));
-
-      })
+       if(categoryid){
+        const queryFilter = query(itemsCollection, where('categoryId','==',categoryid))
+        getDocs(queryFilter)
+        .then( res =>setItems(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
+             //  console.log(res.docs.map((doc)=>({id: doc.id, ...doc.data() })))
+       }else{
+        getDocs(itemsCollection)
+        .then( res =>setItems(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
+       }
+        
     },[categoryid])
  
 
