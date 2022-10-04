@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import Item from "./Item";
+import Swal from "sweetalert2";
+import uuid from "react-uuid";
 
 const CartContext = createContext([]);
 
@@ -12,24 +14,31 @@ export const CartContextProvider = ({ children }) => {
     const isInCart = (id) => { 
       return cart.find(i => i.id === id) ? true : false
     };
-  
-    const addItem = (item,newquantity) => {
+  //agregar Item
+    const addItem = (item, quantity) => {
       isInCart(item.id) ? SetCart(cart.map((products) => {
         if(products.id === item.id){
-          products.counter += newquantity
+          products.quantity += quantity
+          
         }
         return products
+       
       }))
        :
-       SetCart([...cart, {...item,newquantity}])
+       SetCart([...cart, {...item, quantity}]);
+       Swal.fire("Producto agregado");
     };
     //remover producto
     const removeItem = (id) => { SetCart(cart.filter(item => item !== id))}; 
+
+    const totalPrice = () => {
+      return cart.reduce((prev, act) => prev + act.quantity * act.price, 0);
+    };
     
     //limpiar el carrito
     const clear = () => { SetCart([]); }; 
     //Total de productos
-    const totalItems=()=> cart.reduce((acumulador,pruductoActual) => acumulador + pruductoActual.newquantity,0);
+    const totalItems = ()=> cart.reduce((acumulador,pruductoActual) => acumulador + pruductoActual.quantity,0);
     
     return (
       <CartContext.Provider
@@ -39,6 +48,7 @@ export const CartContextProvider = ({ children }) => {
           removeItem,
           clear,
           totalItems,
+          totalPrice,
           cart
        
         }}

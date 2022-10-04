@@ -7,7 +7,6 @@ import Loader from './Loader'
 
 const ItemDetail = ( {item} ) => {
   const [loading, setLoading] = useState(true)
-  const [stock, setStock]=useState(10)
   const { addItem} = useCartContext();  
  
  
@@ -41,7 +40,7 @@ const ItemDetail = ( {item} ) => {
              
              <div className='m-0 row justify-content-center'>
                <div className='col-md-2 col-auto text-center'>
-                  <ItemCount inicio={0} stock={stock}  onAdd={onAdd} />
+                  <ItemCount inicio={0} stock={item.map(i=>i.stock)}  onAdd={onAdd} />
                </div>
              </div>
            
