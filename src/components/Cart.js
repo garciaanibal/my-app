@@ -1,8 +1,9 @@
  import { useCartContext} from "./CartContext";
  import{ Link } from 'react-router-dom';
 import ItemCart from "./ItemCart";
+
 const Cart = () => {
-  const {cart} = useCartContext();
+  const { cart, totalPrice } = useCartContext();
   
   if(cart.length === 0){
     return (
@@ -16,10 +17,12 @@ const Cart = () => {
 
   return (
    <>
-     {
-       cart.map(product => <ItemCart key={product.id} product={product}/>)
-       
-     }
+    {cart.map((product) => (
+				<ItemCart key={product.id} product={product} />
+			))}
+
+     <p>total: {totalPrice()}</p>
+     
    </>
   )
 }

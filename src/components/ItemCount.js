@@ -1,11 +1,11 @@
 import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import { CartContext, useContext } from "react";
+
 
 function ItemCount({ stock, inicio , onAdd }) {
     
   const[count, setCount] = useState(parseInt(inicio));
-  // const { item, addItem} = useContext(CartContext);  
+  
   
   const sumarClick = () => {
     
@@ -21,14 +21,14 @@ function ItemCount({ stock, inicio , onAdd }) {
     }
     useEffect(() =>{
       setCount(parseInt(inicio))
-    }, [])
+    }, [inicio])
 
     return(
       <>
         <div>
-          <Button disabled={count <= 1} onClick={restarClick} variant="outline-primary" btn-lg> - </Button>{' '}
+          <Button disabled={count <= 1} onClick={restarClick} variant="outline-primary" size="lg"> - </Button>{' '}
           <Button  variant="outline-secondary" > {count} </Button>{' '}
-          <Button disabled={count >= stock} onClick={sumarClick} variant="outline-primary" btn-lg> + </Button>
+          <Button disabled={count >= stock} onClick={sumarClick} variant="outline-primary" size="lg"> + </Button>
           <div> 
             <Button disabled={stock <= 0}  onClick={ () =>onAdd(count)} >Añadir al Carrito </Button>
             <br></br>

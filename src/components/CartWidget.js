@@ -1,7 +1,7 @@
 import { useCartContext} from "./CartContext";
 
 const CartWidget = () => {
-  const{totalItems}= useCartContext()
+  const{totalProducts}= useCartContext()
 
   
   return (
@@ -11,7 +11,7 @@ const CartWidget = () => {
         width="40"
         height="30"        
     />
-    <span>{totalItems() || ''}</span>
+    <span>{totalProducts() || ''}</span>
     </>
    
   )

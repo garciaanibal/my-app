@@ -6,7 +6,7 @@ import { collection, getDocs, getFirestore,query,where} from "firebase/firestore
 
 function ItemListContainer({greeting}) {
  
-      const [items, setItems] = useState([])
+      const [data, setData] = useState([]);
       let { categoryid } = useParams()
 
       useEffect(() => {
@@ -16,11 +16,11 @@ function ItemListContainer({greeting}) {
        if(categoryid){
         const queryFilter = query(itemsCollection, where('categoryId','==',categoryid))
         getDocs(queryFilter)
-        .then( res =>setItems(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
+        .then( res =>setData(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
              //  console.log(res.docs.map((doc)=>({id: doc.id, ...doc.data() })))
        }else{
         getDocs(itemsCollection)
-        .then( res =>setItems(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
+        .then( res =>setData(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
        }
         
     },[categoryid])
@@ -32,7 +32,7 @@ function ItemListContainer({greeting}) {
         <h2  align='center'>{greeting}</h2> 
       </div>
       <div className='d-inline-flex p-2 bd-highlight'>
-        { items.map(i=>
+        { data.map(i=>
           <div key={i.id} className='d-grid gap-3'>
             <div align='center' className='p-2 bg-light border'>
               <h2>{i.name}</h2>     
@@ -52,9 +52,10 @@ function ItemListContainer({greeting}) {
         }
         {'  '}
       </div>
+     
+			
     </>
   )
 }
 
 export default ItemListContainer
-
