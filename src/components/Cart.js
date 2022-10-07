@@ -26,6 +26,7 @@ const Cart = () => {
      <br></br>
      <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>
    </>
+   
   )
 }
 
