@@ -6,7 +6,7 @@ const ItemCart = ({product}) => {
   return (
     <div>
        <img src= {product.URLimage}  style = { {width:"10rem"}}/>
-       <p>Titulo: {product.name}</p>
+       <p> {product.name}</p>
        <p>Cantidad: {product.quantity}</p>
        <p>Precio:{product.price} </p>
        <Button onClick={()=>removeProduct(product.id)}>Eliminar</Button>

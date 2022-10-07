@@ -19,8 +19,8 @@ export const ItemDetail = ({ data }) => {
 		<div align='center'>
 
 				<img src={data.URLimage} style = { {width:"15rem"} } />
-				<div className="content">
-					<h1>{data.name}</h1>
+				
+					<h3>{data.name}</h3>
 					<h5>Precio: {data.price} </h5> 
 					{
 					irAlCart ? (
@@ -37,11 +37,10 @@ export const ItemDetail = ({ data }) => {
 						  ) : (
 					<div className='m-0 row justify-content-center'>
 						<div className='col-md-2 col-auto text-center'>
-							<ItemCount inicio={0} stock={5}  onAdd={onAdd} />
+							<ItemCount inicio={0} stock={data.stock}  onAdd={onAdd} />
 						</div>
 					</div>
 					)}
-				</div>
 			
 		</div>
 	);

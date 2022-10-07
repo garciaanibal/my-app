@@ -1,9 +1,9 @@
  import { useCartContext} from "./CartContext";
  import{ Link } from 'react-router-dom';
 import ItemCart from "./ItemCart";
-
+import Button from 'react-bootstrap/Button';
 const Cart = () => {
-  const { cart, totalPrice } = useCartContext();
+  const { cart, totalPrice,clearCart } = useCartContext();
   
   if(cart.length === 0){
     return (
@@ -20,9 +20,11 @@ const Cart = () => {
     {cart.map((product) => (
 				<ItemCart key={product.id} product={product} />
 			))}
+    <br></br>
+     <h2>total: {totalPrice()}</h2>
 
-     <p>total: {totalPrice()}</p>
-     
+     <br></br>
+     <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>
    </>
   )
 }
