@@ -2,10 +2,13 @@
  import{ Link } from 'react-router-dom';
 import ItemCart from "./ItemCart";
 import Button from 'react-bootstrap/Button';
-import {collection, getFirestore,addDoc} from "firebase/firestore";
-import { Form } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import {collection, getFirestore,addDoc, Timestamp } from "firebase/firestore";
+
 const Cart = () => {
   const { cart, totalPrice,clearCart } = useCartContext();
+  
+  const [orders, setOrders]=useState([]);
  
   const order = {
 		buyer: {
@@ -13,6 +16,7 @@ const Cart = () => {
 			email: "Pablo@gmail.com",
 			phone: "123123",
 			address: "asdd",
+      date : Timestamp.fromDate(new Date()) //agregamos la fecha del momento de la compra
 		},
 		items: cart.map((product) => ({
 			id: product.id,
@@ -26,7 +30,7 @@ const Cart = () => {
 	const handleClick = () => {
 		const db = getFirestore();
 		const ordersCollection = collection(db, "orders");
-		addDoc(ordersCollection, order).then(({ id }) => console.log(id));
+		addDoc(ordersCollection, order).then(({ id }) => console.log(id.docs.map( d => ({id: d.id, ...d.data()}) )));
 	};
 
   if(cart.length === 0){
