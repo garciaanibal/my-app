@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/esm/Button';
 const OrdersView = () => {
     const [orders, setOrders]=useState([]);
 
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric"
-    };
+    // const options = {
+    //   year: "numeric",
+    //   month: "numeric",
+    //   day: "numeric",
+    //   hour: "numeric",
+    //   minute: "numeric",
+    //   second: "numeric"
+    // };
 
     useEffect(() => {
         const db = getFirestore()
@@ -25,24 +25,15 @@ const OrdersView = () => {
             
         })
 
-        return () => {
-
-        }
+    
     }, [])
 
-    const updateHandler = (id) => {
-        const db = getFirestore()
-        const orderCollection = collection(db, 'orders')
-        const orderDoc = doc(orderCollection, id)
-        updateDoc( orderDoc, {
-          buyer: { name: 'Marisa', phone: 55555, email: 'marisa@gmail.com' }
-      })
-    }
+
     
   return (
     <div>
       <div className="container-sm inline"><h1>Órdenes de compra</h1></div>
-       {orders.length?(
+       { orders.length ? (
         
         orders.map((order) => (
           
@@ -53,19 +44,17 @@ const OrdersView = () => {
               <div className="m-1">
               <div><h4>Orden nro: {order.id}</h4></div>
                 <div><b>Comprador:</b> {order.buyer.name} - email: {order.buyer.email}</div>
-                <div>Fecha: {order.date.toDate().toLocaleDateString("es", options)}</div>
+                {/* <div>Fecha: {order.date.toDate().toLocaleDateString("es", options)}</div> */}
                 <div>Total: {order.total}</div>
               </div>
                 {order.items.map((item)=>
                   <div key={item.key} className="square border border-success m-2">
-                    <div><b>Producto:</b> {item.title}</div>
+                    <div><b>Producto:</b> {item.name}</div>
                     <div>Precio: {item.price}</div>
                   </div>
                 )                
                 }
-              <div className="m-2">
-                <Button variant="success" size="sm" onClick={(e)=>{e.preventDefault(); updateHandler(order.id);}}>Actualizar orden</Button>
-              </div>
+              
             </div>
           
           </article>

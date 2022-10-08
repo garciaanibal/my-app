@@ -20,9 +20,12 @@ function NavBar( ) {
                 </Link>
                 <Link  to={'/category/herramientas'} style={{ color: 'inherit', textDecoration: 'inherit'}} >
                   <Nav.Link href="#link">Herramientas</Nav.Link>
-                </Link> 
-                  <Nav.Link href="#link">Fomas de pagos</Nav.Link>
-                  <Nav.Link href="#link">Ofertas</Nav.Link>
+                </Link>
+                <Link  to={'/orders'} style={{ color: 'inherit', textDecoration: 'inherit'}} >
+                  <Nav.Link href="#link">Ver Ordenes</Nav.Link>
+                </Link>  
+                 
+                 
               </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse ></Navbar.Collapse>

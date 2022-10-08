@@ -2,8 +2,8 @@
  import{ Link } from 'react-router-dom';
 import ItemCart from "./ItemCart";
 import Button from 'react-bootstrap/Button';
-import React, { useEffect, useState } from 'react';
-import {collection, getFirestore,addDoc, Timestamp } from "firebase/firestore";
+import React, { useState } from 'react';
+import {collection, getFirestore,addDoc, Timestamp, onSnapshot } from "firebase/firestore";
 
 const Cart = () => {
   const { cart, totalPrice,clearCart } = useCartContext();
@@ -12,10 +12,9 @@ const Cart = () => {
  
   const order = {
 		buyer: {
-			name: "Pablo",
-			email: "Pablo@gmail.com",
-			phone: "123123",
-			address: "asdd",
+			name: "Anibal",
+			email: "anibal@gmail.com",
+			phone: "3624256685",
       date : Timestamp.fromDate(new Date()) //agregamos la fecha del momento de la compra
 		},
 		items: cart.map((product) => ({
@@ -30,7 +29,15 @@ const Cart = () => {
 	const handleClick = () => {
 		const db = getFirestore();
 		const ordersCollection = collection(db, "orders");
-		addDoc(ordersCollection, order).then(({ id }) => console.log(id.docs.map( d => ({id: d.id, ...d.data()}) )));
+		addDoc(ordersCollection, order).then(snapshot => 
+    //   console.log(
+    //     snapshot.docs.map( d => ({id: d.id, ...d.data()}))
+    // );
+    
+
+    setOrders(snapshot.docs.map( d => ({id: d.id, ...d.data()}))));
+      
+
 	};
 
   if(cart.length === 0){
@@ -53,10 +60,13 @@ const Cart = () => {
     <br></br>
     <h2>total: {totalPrice()}</h2>
     <br></br>
-        <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>
-        <Button onClick={handleClick} variant="info" size="lg">Emitir compra</Button>
+      <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>{' '}
+      <Link to= {'/Orders'}> 
+        <Button onClick={handleClick} variant="info" size="lg" >Emitir compra</Button>
+      </Link>
+  
     </div>
-
+    <br></br>
 
      
    </>

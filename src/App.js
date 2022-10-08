@@ -21,7 +21,7 @@ function App() {
                 <Route path='/category/:categoryid' element={ <ItemListContainer />} />
                 <Route path='/item/:id' element={ <ItemDetailContainer/> } />
                 <Route path='/cart' element={ <Cart/> } />
-                {/* <Route path='/orders' element={<OrdersView/>}/> */}
+                <Route path='/orders' element={<OrdersView/>}/>
             </Routes> 
         </BrowserRouter>
         <PiePagina/>
