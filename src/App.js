@@ -5,12 +5,10 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import{BrowserRouter, Routes, Route} from 'react-router-dom';
 import Cart from './components/Cart';
 import { CartContextProvider } from './components/CartContext';
-
-
+import PiePagina from './PiePagina';
 
 function App() {
-  
-  
+
   return (
     <>
     <CartContextProvider>
@@ -22,10 +20,10 @@ function App() {
                 <Route path='/category/:categoryid' element={ <ItemListContainer />} />
                 <Route path='/item/:id' element={ <ItemDetailContainer/> } />
                 <Route path='/cart' element={ <Cart/> } />
-               
-              
+ 
             </Routes> 
         </BrowserRouter>
+        <PiePagina/>
       </CartContextProvider>
     
     </>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import { Link, useParams } from 'react-router-dom'
@@ -17,7 +16,7 @@ function ItemListContainer({greeting}) {
         const queryFilter = query(itemsCollection, where('categoryId','==',categoryid))
         getDocs(queryFilter)
         .then( res =>setData(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))
-             //  console.log(res.docs.map((doc)=>({id: doc.id, ...doc.data() })))
+            
        }else{
         getDocs(itemsCollection)
         .then( res =>setData(res.docs.map((doc)=>({id: doc.id, ...doc.data() }))))

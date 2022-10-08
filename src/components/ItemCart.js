@@ -6,10 +6,10 @@ const ItemCart = ({product}) => {
   return (
     <div>
        <img src= {product.URLimage}  style = { {width:"10rem"}}/>
-       <p> {product.name}</p>
+       <h4> {product.name}</h4>
        <p>Cantidad: {product.quantity}</p>
        <p>Precio:{product.price} </p>
-       <Button onClick={()=>removeProduct(product.id)}>Eliminar</Button>
+       <Button onClick={()=>removeProduct(product.id)} variant="warning" >Eliminar</Button>
        
     </div>
   )

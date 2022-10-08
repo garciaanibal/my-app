@@ -2,9 +2,33 @@
  import{ Link } from 'react-router-dom';
 import ItemCart from "./ItemCart";
 import Button from 'react-bootstrap/Button';
+import {collection, getFirestore,addDoc} from "firebase/firestore";
+import { Form } from "react-bootstrap";
 const Cart = () => {
   const { cart, totalPrice,clearCart } = useCartContext();
-  
+ 
+  const order = {
+		buyer: {
+			name: "Pablo",
+			email: "Pablo@gmail.com",
+			phone: "123123",
+			address: "asdd",
+		},
+		items: cart.map((product) => ({
+			id: product.id,
+			title: product.name,
+			price: product.price,
+			quantity: product.quantity,
+		})),
+		total: totalPrice(),
+	};
+
+	const handleClick = () => {
+		const db = getFirestore();
+		const ordersCollection = collection(db, "orders");
+		addDoc(ordersCollection, order).then(({ id }) => console.log(id));
+	};
+
   if(cart.length === 0){
     return (
       <>
@@ -17,16 +41,22 @@ const Cart = () => {
 
   return (
    <>
-    {cart.map((product) => (
-				<ItemCart key={product.id} product={product} />
-			))}
+    <h1>Cart</h1>
+    <div align='center'>
+        {cart.map((product) => (
+            <ItemCart key={product.id} product={product} />
+          ))}
     <br></br>
-     <h2>total: {totalPrice()}</h2>
+    <h2>total: {totalPrice()}</h2>
+    <br></br>
+        <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>
+        <Button onClick={handleClick} variant="info" size="lg">Emitir compra</Button>
+    </div>
 
-     <br></br>
-     <Button onClick={()=>clearCart()} variant="secondary" size="lg">Vaciar carrito</Button>
+
+     
    </>
-   
+
   )
 }
 
