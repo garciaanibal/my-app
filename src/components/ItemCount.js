@@ -30,7 +30,7 @@ function ItemCount({ stock, inicio , onAdd }) {
           <Button  variant="outline-secondary" > {count} </Button>{' '}
           <Button disabled={count >= stock} onClick={sumarClick} variant="outline-primary" size="lg"> + </Button>
           <div> 
-            <Button disabled={stock <= 0}  onClick={ () =>onAdd(count)} >Añadir al Carrito </Button>
+            <Button disabled={count <= 0}  onClick={ () =>onAdd(count)} >Añadir al Carrito </Button>
             <br></br>
           </div>
         </div>

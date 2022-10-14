@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import { Link, useParams } from 'react-router-dom'
 import { collection, getDocs, getFirestore,query,where} from "firebase/firestore"
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 function ItemListContainer({greeting}) {
  
@@ -27,13 +31,13 @@ function ItemListContainer({greeting}) {
 
   return (
     <>
-     <div className='center'>
+      <div className='center'>
         <h2  align='center'>{greeting}</h2> 
       </div>
-      <div className='d-inline-flex p-2 bd-highlight'>
+      <Container  align='center' >
         { data.map(i=>
-          <div key={i.id} className='d-grid gap-3'>
-            <div align='center' className='p-2 bg-light border'>
+          <Row key={i.id} className='d-grid gap-3 d-inline-flex '>
+            <Col align='center' className='p-2 bg-light border' >
               <h2>{i.name}</h2>     
               <img src={i.URLimage} style = {{width:"12rem"}}/>
               <h5>Precio: </h5> 
@@ -43,14 +47,14 @@ function ItemListContainer({greeting}) {
                 <Button variant="secondary" size="sm">Ver detalle</Button>
               </Link>  
 
-            </div>
+            </Col> {'  '}
             
-          </div>
+          </Row> 
           
           )
         }
-        {'  '}
-      </div>
+       
+      </Container>
      
 			
     </>

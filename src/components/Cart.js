@@ -3,7 +3,8 @@
 import ItemCart from "./ItemCart";
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
-import {collection, getFirestore,addDoc, Timestamp, onSnapshot } from "firebase/firestore";
+import {collection, getFirestore,addDoc, Timestamp } from "firebase/firestore";
+import Swal from "sweetalert2";
 
 const Cart = () => {
   const { cart, totalPrice,clearCart } = useCartContext();
@@ -30,13 +31,9 @@ const Cart = () => {
 		const db = getFirestore();
 		const ordersCollection = collection(db, "orders");
 		addDoc(ordersCollection, order).then(snapshot => 
-    //   console.log(
-    //     snapshot.docs.map( d => ({id: d.id, ...d.data()}))
-    // );
-    
-
-    setOrders(snapshot.docs.map( d => ({id: d.id, ...d.data()}))));
-      
+    snapshot.docs.map( d => ({id: d.id, ...d.data()})));
+    Swal.fire("La orden de pago ha sido generada con éxito")
+    clearCart()
 
 	};
 
